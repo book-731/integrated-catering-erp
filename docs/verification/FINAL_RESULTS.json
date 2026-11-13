@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-11-10T11:21:57.742Z",
+  "tests": {
+    "checkedAt": "2026-11-10T11:17:03.237Z",
+    "commands": [
+      {
+        "command": "npm run check",
+        "exitCode": 0,
+        "timedOut": false,
+        "elapsedSeconds": 44.02,
+        "testSummaries": ["11 passed (11)", "5 passed (5)"]
+      },
+      {
+        "command": "npm run db",
+        "exitCode": 0,
+        "timedOut": false,
+        "elapsedSeconds": 15.01,
+        "testSummaries": []
+      },
+      {
+        "command": "npm run test",
+        "exitCode": 0,
+        "timedOut": false,
+        "elapsedSeconds": 10.21,
+        "testSummaries": ["11 passed (11)", "5 passed (5)"]
+      },
+      {
+        "command": "npm run test:integration",
+        "exitCode": 0,
+        "timedOut": false,
+        "elapsedSeconds": 4.57,
+        "testSummaries": ["3 passed (3)"]
+      }
+    ]
+  },
+  "http": {
+    "checkedAt": "2026-11-10T11:18:18.256Z",
+    "http": [
+      {
+        "url": "http://127.0.0.1:5173/",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/health",
+        "status": 200,
+        "databaseStatus": "up",
+        "requestId": "7290dbdb-8f94-4f2c-a278-611d9fb05d32"
+      },
+      {
+        "url": "http://127.0.0.1:3000/api/health",
+        "status": 200,
+        "databaseStatus": "up",
+        "requestId": "fa2f5657-ec16-4e27-9d7d-2bbaae332418"
+      },
+      {
+        "url": "http://127.0.0.1:3000/api/openapi.json",
+        "status": 200
+      }
+    ],
+    "databases": [
+      {
+        "name": "development",
+        "version": "17.11",
+        "rowCounts": {
+          "users": 0,
+          "ingredients": 0,
+          "categories": 0,
+          "menu_items": 0,
+          "recipes": 0
+        }
+      },
+      {
+        "name": "integration",
+        "version": "17.11",
+        "rowCounts": {
+          "users": 0,
+          "ingredients": 0,
+          "categories": 0,
+          "menu_items": 0,
+          "recipes": 0
+        }
+      }
+    ],
+    "git": {
+      "envIgnored": true,
+      "envTracked": false,
+      "remoteConfigured": false
+    }
+  },
+  "docker": {
+    "checkedAt": "2026-11-10T11:16:02.963Z",
+    "command": "docker info --format {{.ServerVersion}}",
+    "exitCode": null,
+    "timedOut": true,
+    "engineAvailable": false
+  },
+  "composeConfig": {
+    "exitCode": 0
+  },
+  "browser": {
+    "status": "environment-blocked",
+    "errorCode": "ERR_NETWORK_IO_SUSPENDED",
+    "currentVisualRetestPassed": false
+  },
+  "businessModulesAdded": false,
+  "databaseReset": false,
+  "passwordRotated": false,
+  "pushedToRemote": false
+}

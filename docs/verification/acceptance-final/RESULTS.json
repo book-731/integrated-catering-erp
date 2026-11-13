@@ -1,0 +1,83 @@
+{
+  "version": "0.4.0",
+  "checkedAt": "2026-11-12T13:03:17.009Z",
+  "commands": [
+    {
+      "command": "npm run check",
+      "startedAt": "2026-11-12T12:54:56.480Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/acceptance-final/check.txt"
+    },
+    {
+      "command": "npm run db",
+      "startedAt": "2026-11-12T12:56:12.795Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/acceptance-final/db.txt"
+    },
+    {
+      "command": "npm run test",
+      "startedAt": "2026-11-12T12:56:57.315Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/acceptance-final/test-1.txt"
+    },
+    {
+      "command": "npm run test",
+      "startedAt": "2026-11-12T12:57:32.093Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/acceptance-final/test-2.txt"
+    },
+    {
+      "command": "npm run format",
+      "startedAt": "2026-11-12T12:58:04.387Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/acceptance-final/format.txt"
+    },
+    {
+      "command": "npm run test:integration",
+      "startedAt": "2026-11-12T12:58:11.496Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/acceptance-final/integration.txt"
+    },
+    {
+      "command": "npm run test:acceptance",
+      "startedAt": "2026-11-12T13:02:50.512Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/acceptance-final/operational.txt"
+    },
+    {
+      "command": "npm run format:check",
+      "startedAt": "2026-11-12T13:03:10.218Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/acceptance-final/format-check.txt"
+    }
+  ],
+  "tests": {
+    "backend": 74,
+    "frontend": 38,
+    "database": 57,
+    "vitestTotal": 169,
+    "operationalChecks": 22,
+    "operationalSuccess": 22,
+    "previousVitestRetained": 167
+  },
+  "browserPassed": true,
+  "securityPassed": true,
+  "passed": true,
+  "resolvedAttempts": [
+    {
+      "command": "npm run format:check",
+      "startedAt": "2026-11-12T12:58:58.489Z",
+      "exitCode": 1,
+      "passed": false,
+      "log": "docs/verification/acceptance-final/format-check-initial-failure.txt"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "command": "npm run admin:bootstrap",
+  "firstAdminCreatedWithArgon2id": true,
+  "repeatedCreationRefused": true,
+  "productionCreationRefused": true,
+  "passwordNotPrinted": true,
+  "existingAdminUnchanged": true,
+  "isolatedFixtureCleaned": true
+}

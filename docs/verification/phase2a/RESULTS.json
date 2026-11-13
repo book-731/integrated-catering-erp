@@ -1,0 +1,69 @@
+{
+  "stage": "2A",
+  "version": "0.2.0",
+  "checkedAt": "2026-11-10T12:30:34.369Z",
+  "passed": true,
+  "commands": [
+    {
+      "command": "npm run check",
+      "startedAt": "2026-11-10T12:29:25.108Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2a/check.txt"
+    },
+    {
+      "command": "npm run db",
+      "startedAt": "2026-11-10T12:30:07.271Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2a/db.txt"
+    },
+    {
+      "command": "npm run test:integration",
+      "startedAt": "2026-11-10T12:30:22.885Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2a/integration.txt"
+    },
+    {
+      "command": "npm run format:check",
+      "startedAt": "2026-11-10T12:30:30.427Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2a/format.txt"
+    },
+    {
+      "command": "docker compose --profile app --profile test config --quiet",
+      "startedAt": "2026-11-10T12:30:32.564Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2a/compose.txt"
+    },
+    {
+      "command": "node work/phase2a-evidence.mjs",
+      "startedAt": "2026-11-10T12:30:32.966Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2a/runtime.txt"
+    },
+    {
+      "command": "node work/acceptance-security.mjs",
+      "startedAt": "2026-11-10T12:30:33.539Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2a/security.txt"
+    }
+  ],
+  "tests": {
+    "backend": 27,
+    "frontend": 15,
+    "databaseIntegration": 14,
+    "originalRetained": 19,
+    "total": 56
+  },
+  "limits": [
+    "Docker engine/Linux runtime not verified",
+    "Production TLS deployment and remote CI not tested",
+    "Formal slides/architecture attachments absent"
+  ]
+}

@@ -1,0 +1,5 @@
+
+> nkust-team12-restaurant-erp@0.4.0 demo:restart
+> node scripts/acceptance/environment.mjs restart
+
+隔離展示環境已重啟，資料保留。

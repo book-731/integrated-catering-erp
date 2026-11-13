@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-11-12T16:18:32.264Z",
+  "commands": [
+    {
+      "command": "npm run demo:stop",
+      "startedAt": "2026-11-12T16:18:32.265Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "stop.txt"
+    },
+    {
+      "command": "npm run demo:start",
+      "startedAt": "2026-11-12T16:18:34.384Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "start-after-stop.txt"
+    },
+    {
+      "command": "npm run demo:start",
+      "startedAt": "2026-11-12T16:18:41.936Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "start-repeated.txt"
+    },
+    {
+      "command": "npm run demo:restart",
+      "startedAt": "2026-11-12T16:18:46.356Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "restart.txt"
+    },
+    {
+      "command": "npm run check",
+      "startedAt": "2026-11-12T16:18:50.378Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "check.txt"
+    },
+    {
+      "command": "npm run db",
+      "startedAt": "2026-11-12T16:19:46.213Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "db.txt"
+    },
+    {
+      "command": "npm run test:integration",
+      "startedAt": "2026-11-12T16:20:00.995Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "integration.txt"
+    },
+    {
+      "command": "npm run demo:prepare",
+      "startedAt": "2026-11-12T16:26:55.541Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "full-prepare.txt"
+    },
+    {
+      "command": "npm run demo:stage",
+      "startedAt": "2026-11-12T16:27:06.128Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "stage-fresh.txt"
+    },
+    {
+      "command": "npm run demo:stage",
+      "startedAt": "2026-11-12T16:27:10.959Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "stage-repeated.txt"
+    },
+    {
+      "command": "npm run format",
+      "startedAt": "2026-11-12T16:37:20.263Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "format.txt"
+    },
+    {
+      "command": "npm run format:check",
+      "startedAt": "2026-11-12T16:37:24.858Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "format-check.txt"
+    }
+  ],
+  "passed": true,
+  "serviceRecovery": {
+    "passed": true,
+    "apiDown": true,
+    "webDown": true,
+    "stableTables": 23,
+    "windowsRebootPerformed": false
+  },
+  "resolvedAttempts": [
+    {
+      "command": "npm run demo:prepare",
+      "startedAt": "2026-11-12T16:20:14.296Z",
+      "exitCode": 1,
+      "passed": false,
+      "log": "full-prepare-first-failure.txt",
+      "resolution": "Confirmed adapter-pg non-UTC timestamptz write/read offset; SQL-only attempt was insufficient. Dedicated demo connections now pin UTC, with actual DB instant/API roundtrip and midnight boundary regression checks. No old data backfilled."
+    },
+    {
+      "command": "npm run demo:prepare",
+      "startedAt": "2026-11-12T16:23:48.831Z",
+      "exitCode": 1,
+      "passed": false,
+      "log": "full-prepare-attempt-2.txt",
+      "resolution": "Confirmed adapter-pg non-UTC timestamptz write/read offset; SQL-only attempt was insufficient. Dedicated demo connections now pin UTC, with actual DB instant/API roundtrip and midnight boundary regression checks. No old data backfilled."
+    }
+  ],
+  "repeatableFixtures": {
+    "passed": true,
+    "prefix": "DEMO-20261113-28bd7a"
+  },
+  "developmentDataAndAccountsUnchanged": true,
+  "browser": {
+    "passed": true,
+    "total": 13,
+    "success": 13
+  },
+  "securityPassed": true,
+  "readyPrefix": "DEMO-20261113-48781f",
+  "finishedAt": "2026-11-12T16:37:29.602Z",
+  "tests": {
+    "backend": 74,
+    "frontend": 38,
+    "database": 57,
+    "vitestTotal": 169,
+    "httpAcceptance": 22,
+    "browserChecks": 13
+  },
+  "mainDevelopmentTimezoneRemediationPerformed": false
+}

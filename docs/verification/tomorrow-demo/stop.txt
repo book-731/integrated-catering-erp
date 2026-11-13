@@ -1,0 +1,5 @@
+
+> nkust-team12-restaurant-erp@0.4.0 demo:stop
+> node scripts/acceptance/environment.mjs stop
+
+已停止隔離展示服務，所有展示資料保留；開發／一般測試服務未操作。

@@ -1,0 +1,97 @@
+{
+  "checkedAt": "2026-11-10T12:30:33.125Z",
+  "http": [
+    {
+      "url": "http://127.0.0.1:5173/login",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/health",
+      "status": 200,
+      "databaseStatus": "up",
+      "version": "0.2.0"
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/health",
+      "status": 200,
+      "databaseStatus": "up",
+      "version": "0.2.0"
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/openapi.json",
+      "status": 200,
+      "version": "0.2.0",
+      "authPathsPresent": true
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/auth/session",
+      "status": 200,
+      "anonymous": true,
+      "csrfTokenPresent": true,
+      "httpOnly": true,
+      "sameSiteLax": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/users",
+      "status": 401
+    }
+  ],
+  "databases": [
+    {
+      "name": "development",
+      "counts": {
+        "users": 0,
+        "ingredients": 0,
+        "menu_items": 0,
+        "categories": 0,
+        "recipes": 0
+      }
+    },
+    {
+      "name": "test",
+      "counts": {
+        "users": 0,
+        "ingredients": 0,
+        "menu_items": 0,
+        "categories": 0,
+        "recipes": 0
+      }
+    }
+  ],
+  "originalFilesUnchanged": [
+    {
+      "path": "apps/backend/tests/health.test.ts",
+      "identical": true
+    },
+    {
+      "path": "apps/backend/tests/migration-integrity.test.ts",
+      "identical": true
+    },
+    {
+      "path": "apps/backend/tests/health.integration.test.ts",
+      "identical": true
+    },
+    {
+      "path": "apps/frontend/src/pages/dashboard.test.tsx",
+      "identical": true
+    },
+    {
+      "path": "apps/backend/prisma/migrations/20261110000100_initial_core/migration.sql",
+      "identical": true
+    }
+  ],
+  "browser": {
+    "realLogin": true,
+    "realDashboardDatabaseUp": true,
+    "sevenAdminModulesSixPending": true,
+    "realUserListAndSelfEdit": true,
+    "successNoticeAfterSelfEdit": true,
+    "searchEmptyState": true,
+    "placeholderExplicitlyPending": true,
+    "mobileNavigation": true,
+    "logoutAndProtectedRedirect": true,
+    "desktop1280NoBodyOverflow": true,
+    "mobile390NoBodyOverflow": true,
+    "isolatedTestAccountCleaned": true
+  }
+}

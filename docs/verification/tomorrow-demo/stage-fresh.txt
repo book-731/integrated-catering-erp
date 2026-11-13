@@ -1,0 +1,6 @@
+
+> nkust-team12-restaurant-erp@0.4.0 demo:stage
+> node scripts/acceptance/stage-demo.mjs
+
+隔離展示已啟動：PostgreSQL 55434、API 3004、前端 localhost:5175。
+展示資料已建立：DEMO-20261113-28bd7a；1000g → 收貨後1500g → 兩份餐點製作後1300g；訂單240.00。

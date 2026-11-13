@@ -1,0 +1,125 @@
+
+> nkust-team12-restaurant-erp@0.1.0 check
+> npm run db:validate && npm run typecheck && npm test && npm run build
+
+
+> nkust-team12-restaurant-erp@0.1.0 db:validate
+> npm run db:validate -w @erp/backend
+
+
+> @erp/backend@0.1.0 db:validate
+> prisma validate
+
+The schema at prisma\schema.prisma is valid 🚀
+
+> nkust-team12-restaurant-erp@0.1.0 typecheck
+> npm run db:generate && npm run typecheck --workspaces
+
+
+> nkust-team12-restaurant-erp@0.1.0 db:generate
+> npm run db:generate -w @erp/backend
+
+
+> @erp/backend@0.1.0 db:generate
+> prisma generate
+
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 68ms
+
+
+> @erp/backend@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @erp/frontend@0.1.0 typecheck
+> tsc --noEmit
+
+
+> nkust-team12-restaurant-erp@0.1.0 test
+> npm run db:generate && npm run test --workspaces
+
+
+> nkust-team12-restaurant-erp@0.1.0 db:generate
+> npm run db:generate -w @erp/backend
+
+
+> @erp/backend@0.1.0 db:generate
+> prisma generate
+
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 67ms
+
+
+> @erp/backend@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 <PROJECT_ROOT>/apps/backend
+
+
+ Test Files  2 passed (2)
+      Tests  11 passed (11)
+   Start at  19:16:12
+   Duration  1.77s (import 79%, transform 11%, tests 9%, worker 1%)
+
+
+> @erp/frontend@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 <PROJECT_ROOT>/apps/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  19:16:15
+   Duration  6.99s (environment 61%, setup 20%, tests 11%, import 6%, transform 2%)
+
+
+> nkust-team12-restaurant-erp@0.1.0 build
+> npm run db:generate && npm run build --workspaces
+
+
+> nkust-team12-restaurant-erp@0.1.0 db:generate
+> npm run db:generate -w @erp/backend
+
+
+> @erp/backend@0.1.0 db:generate
+> prisma generate
+
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 73ms
+
+
+> @erp/backend@0.1.0 build
+> tsc -p tsconfig.build.json
+
+
+> @erp/frontend@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.7 building client environment for production...
+transforming...
+✓ 1677 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               0.67 kB │ gzip:   0.45 kB
+dist/assets/index-Pl9UwBc8.css               20.85 kB │ gzip:   5.77 kB
+dist/assets/module-placeholder-C7MGKuBl.js    2.52 kB │ gzip:   1.08 kB
+dist/assets/dashboard-DZZa-dqf.js           109.67 kB │ gzip:  29.85 kB
+dist/assets/index-Bs_YZpwC.js               480.09 kB │ gzip: 147.99 kB
+
+✓ built in 769ms
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.

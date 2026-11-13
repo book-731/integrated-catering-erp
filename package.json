@@ -1,0 +1,43 @@
+{
+  "name": "nkust-team12-restaurant-erp",
+  "version": "0.4.0",
+  "private": true,
+  "description": "國立高雄科技大學資管系第 12 組餐飲業整合型 ERP",
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=24.11.0 <25",
+    "npm": ">=11 <12"
+  },
+  "scripts": {
+    "setup:env": "node scripts/setup-env.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "dev": "concurrently --kill-others --names api,web \"npm run dev -w @erp/backend\" \"npm run dev -w @erp/frontend\"",
+    "dev:api": "npm run dev -w @erp/backend",
+    "dev:web": "npm run dev -w @erp/frontend",
+    "admin:bootstrap": "npm run admin:bootstrap -w @erp/backend",
+    "db": "npm run db -w @erp/backend",
+    "db:generate": "npm run db:generate -w @erp/backend",
+    "db:validate": "npm run db:validate -w @erp/backend",
+    "db:migrate": "npm run db:migrate -w @erp/backend --",
+    "db:deploy": "npm run db:deploy -w @erp/backend",
+    "db:status": "npm run db:status -w @erp/backend",
+    "build": "npm run db:generate && npm run build --workspaces",
+    "typecheck": "npm run db:generate && npm run typecheck --workspaces",
+    "test": "npm run db:generate && npm run test --workspaces",
+    "test:integration": "node scripts/test-integration.mjs",
+    "check": "npm run db:validate && npm run typecheck && npm test && npm run build",
+    "demo:start": "node scripts/acceptance/environment.mjs start",
+    "demo:stop": "node scripts/acceptance/environment.mjs stop",
+    "demo:restart": "node scripts/acceptance/environment.mjs restart",
+    "demo:prepare": "node scripts/acceptance/run.mjs",
+    "demo:stage": "node scripts/acceptance/stage-demo.mjs",
+    "test:acceptance": "node scripts/acceptance/run.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "prettier": "^3.9.10"
+  }
+}

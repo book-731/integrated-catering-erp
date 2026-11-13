@@ -1,0 +1,124 @@
+{
+  "runId": "e7614558-5dde-40f7-a4d9-8ec1fb318232",
+  "prefix": "驗收-e7614558",
+  "database": "restaurant_erp_acceptance_test",
+  "port": 55434,
+  "api": "http://127.0.0.1:3004/api",
+  "frontend": "http://localhost:5175",
+  "startedAt": "2026-11-12T16:26:58.939Z",
+  "cases": [
+    {
+      "name": "01 ADMIN與四角色真實登入",
+      "passed": true
+    },
+    {
+      "name": "02 不存在餐點設定回404",
+      "passed": true
+    },
+    {
+      "name": "03 食材新增與可追蹤期初庫存",
+      "passed": true
+    },
+    {
+      "name": "04 真實分類、一般餐點與配方",
+      "passed": true
+    },
+    {
+      "name": "05 套餐、加購與配方關聯",
+      "passed": true
+    },
+    {
+      "name": "06 供應商、採購申請與核准訂購",
+      "passed": true
+    },
+    {
+      "name": "07 部分收貨與同請求重送不重複入庫",
+      "passed": true
+    },
+    {
+      "name": "08 超收整筆回滾、完成收貨後數量正確",
+      "passed": true
+    },
+    {
+      "name": "09 CASHIER建立內用套餐訂單並保存價格快照",
+      "passed": true
+    },
+    {
+      "name": "10 併發重送訂單去重、不同內容衝突",
+      "passed": true
+    },
+    {
+      "name": "11 KITCHEN可查待處理訂單及配方",
+      "passed": true
+    },
+    {
+      "name": "12 改價與改配方不改歷史快照",
+      "passed": true
+    },
+    {
+      "name": "13 製作時依快照精確扣庫且重送不重扣",
+      "passed": true
+    },
+    {
+      "name": "14 記錄全額付款後由廚房完成訂單",
+      "passed": true
+    },
+    {
+      "name": "15 庫存不足時狀態、數量、流水均不部分修改",
+      "passed": true
+    },
+    {
+      "name": "16 待處理取消不扣庫、製作後取消不自動回庫",
+      "passed": true
+    },
+    {
+      "name": "17 員工、職務、班表、出勤與衝突限制",
+      "passed": true
+    },
+    {
+      "name": "18 報表與原始訂單、採購、出勤資料一致",
+      "passed": true
+    },
+    {
+      "name": "19 未登入、CSRF及各角色後端權限",
+      "passed": true
+    },
+    {
+      "name": "20 帳號停用撤銷既有Session",
+      "passed": true
+    },
+    {
+      "name": "21 四角色登出後均不可存取管理API",
+      "passed": true
+    }
+  ],
+  "ids": {
+    "rice": "a2dd59f4-fb3f-434f-bf57-a70643ef5b5a",
+    "empty": "fa56b1cf-7a56-4c97-b4b6-07c703754832",
+    "category": "8ed7c27a-37ea-429e-bf81-4cc9a3c17d39",
+    "meal": "05786093-2894-4b23-9f74-533589608c38",
+    "bundle": "947f4d01-f6e8-47ba-af6b-deccca9de385",
+    "group": "bee3d68e-dd3e-4c2a-9b1e-c5b5fa180d13",
+    "option": "038d056e-d5f3-4a19-b29c-274bda765bcb",
+    "supplier": "6c3c75f9-8b22-48b9-b2b4-75fade8dd8cd",
+    "purchase": "57cfc391-0721-4175-8f69-2d8e79610de7",
+    "purchaseLine": "a218114c-902d-419f-8344-1ff005aa420c",
+    "order": "a7baf7d9-8fad-4daf-9e78-e135396d5e89",
+    "shortMeal": "615826f1-6e4d-4073-8c1a-fb4c2291ef48",
+    "job": "b47db4a1-3bfe-40a8-beae-3e2e1aa8320e",
+    "employee": "75f13da6-fc6d-49be-97c1-a8f5daadc44a",
+    "shift": "4af01387-efd8-496f-9946-8e7b97de82e6",
+    "attendance": "616827ed-fd92-458f-85e1-397c53158f58"
+  },
+  "passed": true,
+  "expected": {
+    "orderTotal": "378.50",
+    "finalRice": "97.625",
+    "scheduledHours": "8.00",
+    "attendanceHours": "7.83",
+    "leaveHours": "1.00"
+  },
+  "finishedAt": "2026-11-12T16:27:00.766Z",
+  "total": 21,
+  "success": 21
+}

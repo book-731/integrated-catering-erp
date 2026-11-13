@@ -1,0 +1,5 @@
+
+> nkust-team12-restaurant-erp@0.4.0 demo:start
+> node scripts/acceptance/environment.mjs start
+
+隔離展示已啟動：PostgreSQL 55434、API 3004、前端 localhost:5175。

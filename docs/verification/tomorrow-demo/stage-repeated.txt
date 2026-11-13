@@ -1,0 +1,6 @@
+
+> nkust-team12-restaurant-erp@0.4.0 demo:stage
+> node scripts/acceptance/stage-demo.mjs
+
+隔離展示已啟動：PostgreSQL 55434、API 3004、前端 localhost:5175。
+展示資料已就緒並沿用：DEMO-20261113-28bd7a（不新增、不重設庫存）。

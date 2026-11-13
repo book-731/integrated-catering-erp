@@ -1,0 +1,14 @@
+node_modules
+**/node_modules
+**/dist
+**/coverage
+**/.env
+.env
+**/.env.*
+.env.*
+!.env.example
+!**/.env.example
+.git
+work
+outputs
+apps/backend/src/generated

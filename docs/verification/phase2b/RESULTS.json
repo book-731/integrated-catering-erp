@@ -1,0 +1,72 @@
+{
+  "stage": "2B",
+  "version": "0.3.0",
+  "checkedAt": "2026-11-10T15:02:22.552Z",
+  "passed": true,
+  "commands": [
+    {
+      "command": "npm run check",
+      "startedAt": "2026-11-10T14:59:44.231Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2b/check.txt"
+    },
+    {
+      "command": "npm run db",
+      "startedAt": "2026-11-10T15:00:59.465Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2b/db.txt"
+    },
+    {
+      "command": "npm run test",
+      "startedAt": "2026-11-10T15:01:23.400Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2b/test.txt"
+    },
+    {
+      "command": "npm run test:integration",
+      "startedAt": "2026-11-10T15:01:47.742Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2b/test-integration.txt"
+    },
+    {
+      "command": "npm run format:check",
+      "startedAt": "2026-11-10T15:02:05.453Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2b/format-check.txt"
+    },
+    {
+      "command": "docker compose --profile app --profile test config --quiet",
+      "startedAt": "2026-11-10T15:02:09.692Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2b/compose.txt"
+    },
+    {
+      "command": "node work/phase2b-runtime.mjs",
+      "startedAt": "2026-11-10T15:02:10.223Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2b/runtime.txt"
+    },
+    {
+      "command": "node work/acceptance-security.mjs",
+      "startedAt": "2026-11-10T15:02:21.277Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/phase2b/security.txt"
+    }
+  ],
+  "tests": {
+    "backend": 64,
+    "frontend": 31,
+    "databaseIntegration": 36,
+    "originalRetained": 56,
+    "total": 131
+  },
+  "scope": "Catalog CRUD, transactional recipe editing, KITCHEN read-only stock and ingredient availability; no inventory mutations or order APIs"
+}

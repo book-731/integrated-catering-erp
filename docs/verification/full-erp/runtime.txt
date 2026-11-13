@@ -1,0 +1,82 @@
+{
+  "checkedAt": "2026-11-12T07:24:11.984Z",
+  "passed": true,
+  "http": [
+    {
+      "url": "http://127.0.0.1:3000/api/health",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/health",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "url": "http://127.0.0.1:5173/login",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/operations/orders",
+      "status": 401,
+      "passed": true
+    }
+  ],
+  "databases": [
+    {
+      "name": "development",
+      "connected": true,
+      "version": "17.11",
+      "counts": {
+        "users": 0,
+        "ingredients": 0,
+        "menu_categories": 0,
+        "menu_items": 0,
+        "orders": 0,
+        "stock_movements": 0,
+        "suppliers": 0,
+        "purchases": 0,
+        "jobs": 0,
+        "employees": 0,
+        "shifts": 0,
+        "attendance": 0,
+        "leaves": 0
+      }
+    },
+    {
+      "name": "test",
+      "connected": true,
+      "version": "17.11",
+      "counts": {
+        "users": 0,
+        "ingredients": 0,
+        "menu_categories": 0,
+        "menu_items": 0,
+        "orders": 0,
+        "stock_movements": 0,
+        "suppliers": 0,
+        "purchases": 0,
+        "jobs": 0,
+        "employees": 0,
+        "shifts": 0,
+        "attendance": 0,
+        "leaves": 0
+      }
+    }
+  ],
+  "originalMigrations": [
+    {
+      "path": "apps/backend/prisma/migrations/20261110000100_initial_core/migration.sql",
+      "unchanged": true
+    },
+    {
+      "path": "apps/backend/prisma/migrations/20261110000200_auth_sessions/migration.sql",
+      "unchanged": true
+    },
+    {
+      "path": "apps/backend/prisma/migrations/20261110000300_catalog_management/migration.sql",
+      "unchanged": true
+    }
+  ]
+}

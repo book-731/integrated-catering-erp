@@ -1,0 +1,26 @@
+
+> nkust-team12-restaurant-erp@0.4.0 demo:prepare
+> node scripts/acceptance/run.mjs
+
+PASS 01 ADMIN與四角色真實登入
+PASS 02 不存在餐點設定回404
+PASS 03 食材新增與可追蹤期初庫存
+PASS 04 真實分類、一般餐點與配方
+PASS 05 套餐、加購與配方關聯
+PASS 06 供應商、採購申請與核准訂購
+PASS 07 部分收貨與同請求重送不重複入庫
+PASS 08 超收整筆回滾、完成收貨後數量正確
+PASS 09 CASHIER建立內用套餐訂單並保存價格快照
+PASS 10 併發重送訂單去重、不同內容衝突
+PASS 11 KITCHEN可查待處理訂單及配方
+PASS 12 改價與改配方不改歷史快照
+PASS 13 製作時依快照精確扣庫且重送不重扣
+PASS 14 記錄全額付款後由廚房完成訂單
+PASS 15 庫存不足時狀態、數量、流水均不部分修改
+PASS 16 待處理取消不扣庫、製作後取消不自動回庫
+PASS 17 員工、職務、班表、出勤與衝突限制
+PASS 18 報表與原始訂單、採購、出勤資料一致
+PASS 19 未登入、CSRF及各角色後端權限
+PASS 20 帳號停用撤銷既有Session
+PASS 21 四角色登出後均不可存取管理API
+驗收 22/22 通過；重啟保存通過，開發帳號與業務資料未變。

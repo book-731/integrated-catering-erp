@@ -1,0 +1,44 @@
+
+> nkust-team12-restaurant-erp@0.4.0 test
+> npm run db:generate && npm run test --workspaces
+
+
+> nkust-team12-restaurant-erp@0.4.0 db:generate
+> npm run db:generate -w @erp/backend
+
+
+> @erp/backend@0.4.0 db:generate
+> prisma generate
+
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 353ms
+
+
+> @erp/backend@0.4.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Users/user/Documents/Codex/2026-11-10/12-erp-api-erp-erd-react/apps/backend
+
+
+ Test Files  7 passed (7)
+      Tests  74 passed (74)
+   Start at  20:57:43
+   Duration  3.72s (import 67%, tests 22%, transform 9%, worker 2%)
+
+
+> @erp/frontend@0.4.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Users/user/Documents/Codex/2026-11-10/12-erp-api-erp-erd-react/apps/frontend
+
+
+ Test Files  4 passed (4)
+      Tests  38 passed (38)
+   Start at  20:57:48
+   Duration  15.78s (environment 46%, tests 36%, setup 11%, import 6%, transform 1%)
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.

@@ -1,0 +1,129 @@
+{
+  "checkedAt": "2026-11-10T15:02:10.459Z",
+  "http": [
+    {
+      "url": "http://127.0.0.1:5173/login",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/health",
+      "status": 200,
+      "databaseStatus": "up",
+      "version": "0.3.0"
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/health",
+      "status": 200,
+      "databaseStatus": "up",
+      "version": "0.3.0"
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/openapi.json",
+      "status": 200,
+      "catalogPathsPresent": true
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/ingredients",
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/menu-categories",
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/menu-items",
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/menu-items/12345678-1234-4234-8234-123456789012/ingredient-availability",
+      "status": 401
+    }
+  ],
+  "databases": [
+    {
+      "name": "development",
+      "counts": {
+        "users": 0,
+        "ingredients": 0,
+        "categories": 0,
+        "menuitems": 0,
+        "recipes": 0
+      },
+      "baselinePreserved": true
+    },
+    {
+      "name": "test",
+      "counts": {
+        "users": 0,
+        "ingredients": 0,
+        "categories": 0,
+        "menuitems": 0,
+        "recipes": 0
+      },
+      "baselinePreserved": true
+    }
+  ],
+  "acceptedMigrationsUnchanged": [
+    {
+      "path": "apps/backend/prisma/migrations/20261110000100_initial_core/migration.sql",
+      "unchanged": true
+    },
+    {
+      "path": "apps/backend/prisma/migrations/20261110000200_auth_sessions/migration.sql",
+      "unchanged": true
+    }
+  ],
+  "acceptedTests": [
+    {
+      "path": "apps/backend/tests/auth.integration.test.ts",
+      "unchanged": true,
+      "reason": "preserved"
+    },
+    {
+      "path": "apps/backend/tests/auth.test.ts",
+      "unchanged": true,
+      "reason": "preserved"
+    },
+    {
+      "path": "apps/backend/tests/health.integration.test.ts",
+      "unchanged": true,
+      "reason": "preserved"
+    },
+    {
+      "path": "apps/backend/tests/health.test.ts",
+      "unchanged": true,
+      "reason": "preserved"
+    },
+    {
+      "path": "apps/backend/tests/migration-integrity.test.ts",
+      "unchanged": true,
+      "reason": "preserved"
+    },
+    {
+      "path": "apps/backend/tests/session-cookie.test.ts",
+      "unchanged": true,
+      "reason": "preserved"
+    },
+    {
+      "path": "apps/frontend/src/auth/auth.test.tsx",
+      "unchanged": false,
+      "reason": "Frontend navigation assertion updated from 6 to 4 pending modules; all test cases retained."
+    },
+    {
+      "path": "apps/frontend/src/pages/dashboard.test.tsx",
+      "unchanged": true,
+      "reason": "preserved"
+    }
+  ],
+  "git": {
+    "envIgnored": true,
+    "envTracked": false,
+    "hasRemote": false
+  },
+  "temporaryCredentialFileAbsent": true,
+  "docker": {
+    "engineAvailable": false,
+    "queryTimedOut": true,
+    "linuxContainersTested": false
+  }
+}

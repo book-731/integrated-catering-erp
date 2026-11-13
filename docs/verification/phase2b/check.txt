@@ -1,0 +1,139 @@
+
+> nkust-team12-restaurant-erp@0.3.0 check
+> npm run db:validate && npm run typecheck && npm test && npm run build
+
+
+> nkust-team12-restaurant-erp@0.3.0 db:validate
+> npm run db:validate -w @erp/backend
+
+
+> @erp/backend@0.3.0 db:validate
+> prisma validate
+
+The schema at prisma\schema.prisma is valid 🚀
+
+> nkust-team12-restaurant-erp@0.3.0 typecheck
+> npm run db:generate && npm run typecheck --workspaces
+
+
+> nkust-team12-restaurant-erp@0.3.0 db:generate
+> npm run db:generate -w @erp/backend
+
+
+> @erp/backend@0.3.0 db:generate
+> prisma generate
+
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 177ms
+
+
+> @erp/backend@0.3.0 typecheck
+> tsc --noEmit
+
+
+> @erp/frontend@0.3.0 typecheck
+> tsc --noEmit
+
+
+> nkust-team12-restaurant-erp@0.3.0 test
+> npm run db:generate && npm run test --workspaces
+
+
+> nkust-team12-restaurant-erp@0.3.0 db:generate
+> npm run db:generate -w @erp/backend
+
+
+> @erp/backend@0.3.0 db:generate
+> prisma generate
+
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 179ms
+
+
+> @erp/backend@0.3.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Users/user/Documents/Codex/2026-11-10/12-erp-api-erp-erd-react/apps/backend
+
+
+ Test Files  6 passed (6)
+      Tests  64 passed (64)
+   Start at  23:00:20
+   Duration  2.82s (import 59%, tests 24%, transform 14%, worker 2%)
+
+
+> @erp/frontend@0.3.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Users/user/Documents/Codex/2026-11-10/12-erp-api-erp-erd-react/apps/frontend
+
+
+ Test Files  3 passed (3)
+      Tests  31 passed (31)
+   Start at  23:00:24
+   Duration  12.42s (environment 43%, tests 40%, setup 10%, import 5%, transform 1%)
+
+
+> nkust-team12-restaurant-erp@0.3.0 build
+> npm run db:generate && npm run build --workspaces
+
+
+> nkust-team12-restaurant-erp@0.3.0 db:generate
+> npm run db:generate -w @erp/backend
+
+
+> @erp/backend@0.3.0 db:generate
+> prisma generate
+
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 174ms
+
+
+> @erp/backend@0.3.0 build
+> tsc -p tsconfig.build.json
+
+
+> @erp/frontend@0.3.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.7 building client environment for production...
+transforming...
+✓ 1697 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               0.67 kB │ gzip:   0.45 kB
+dist/assets/index-Be3zuG0f.css               31.20 kB │ gzip:   8.09 kB
+dist/assets/iso-CpDokS_n.js                   0.09 kB │ gzip:   0.10 kB
+dist/assets/arrow-right-DtoNpc9F.js           0.16 kB │ gzip:   0.16 kB
+dist/assets/auth-context-Cb-yKaDg.js          0.20 kB │ gzip:   0.17 kB
+dist/assets/search-BYlUcXTn.js                0.27 kB │ gzip:   0.21 kB
+dist/assets/shield-check-DSoRIHCp.js          0.31 kB │ gzip:   0.25 kB
+dist/assets/refresh-cw-oLLwSDV8.js            0.32 kB │ gzip:   0.22 kB
+dist/assets/createLucideIcon-BBZ_cS9O.js      0.90 kB │ gzip:   0.54 kB
+dist/assets/module-placeholder-DjyMSCdP.js    2.61 kB │ gzip:   1.14 kB
+dist/assets/login-nBu-vjPB.js                 4.88 kB │ gzip:   1.77 kB
+dist/assets/menu-categories-CZE3Aix9.js       6.61 kB │ gzip:   2.18 kB
+dist/assets/ingredients-CwrHEDxo.js          10.73 kB │ gzip:   3.08 kB
+dist/assets/catalog-ui-DNFwh64i.js           13.26 kB │ gzip:   4.18 kB
+dist/assets/users-DosrJ7mH.js                16.40 kB │ gzip:   4.28 kB
+dist/assets/app-routes-ZdNI2QPc.js           21.00 kB │ gzip:   6.03 kB
+dist/assets/dashboard-6eTvKPcz.js            23.51 kB │ gzip:   5.16 kB
+dist/assets/menu-items-DAcu6SuP.js           31.36 kB │ gzip:   7.41 kB
+dist/assets/client-D-MWcRnm.js               87.57 kB │ gzip:  25.31 kB
+dist/assets/index-BQkGJuxS.js               468.43 kB │ gzip: 144.50 kB
+
+✓ built in 1.14s
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.

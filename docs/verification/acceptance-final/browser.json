@@ -1,0 +1,141 @@
+{
+  "pages": [
+    {
+      "name": "使用者與權限",
+      "url": "http://localhost:5175/users",
+      "hasHeading": true,
+      "error": false
+    },
+    {
+      "name": "菜單與商品",
+      "url": "http://localhost:5175/menu-items",
+      "hasHeading": true,
+      "error": false
+    },
+    {
+      "name": "訂單與銷售",
+      "url": "http://localhost:5175/orders",
+      "hasHeading": true,
+      "error": false
+    },
+    {
+      "name": "庫存管理",
+      "url": "http://localhost:5175/inventory",
+      "hasHeading": true,
+      "error": false
+    },
+    {
+      "name": "採購與供應商",
+      "url": "http://localhost:5175/purchasing",
+      "hasHeading": true,
+      "error": false
+    },
+    {
+      "name": "員工與排班",
+      "url": "http://localhost:5175/staff",
+      "hasHeading": true,
+      "error": false
+    },
+    {
+      "name": "報表與營運分析",
+      "url": "http://localhost:5175/reports",
+      "hasHeading": true,
+      "error": false
+    }
+  ],
+  "flows": [
+    {
+      "name": "班表日期、重疊拒絕及有效班次保存",
+      "passed": true
+    },
+    {
+      "name": "CASHIER瀏覽器建立內用訂單",
+      "passed": true
+    },
+    {
+      "name": "KITCHEN瀏覽器開始製作與完成跨角色訂單",
+      "passed": true
+    },
+    {
+      "name": "KITCHEN沒有庫存寫入及採購／人事導覽",
+      "passed": true
+    },
+    {
+      "name": "KITCHEN直接進入採購頁遭拒",
+      "passed": true
+    },
+    {
+      "name": "真實報表顯示857.00營收、3單、50.00採購及8/9小時班表",
+      "passed": true
+    }
+  ],
+  "mobile": [
+    {
+      "path": "/reports",
+      "body": 375,
+      "heading": "報表與營運分析",
+      "rows": 0,
+      "width": 390,
+      "passed": true
+    },
+    {
+      "path": "/purchasing",
+      "body": 375,
+      "heading": "採購與供應商",
+      "rows": 2,
+      "width": 390,
+      "passed": true
+    },
+    {
+      "path": "/staff",
+      "body": 375,
+      "heading": "員工與排班",
+      "rows": 2,
+      "width": 390,
+      "passed": true
+    },
+    {
+      "path": "/users",
+      "body": 375,
+      "heading": "使用者與權限",
+      "rows": 6,
+      "width": 390,
+      "passed": true
+    },
+    {
+      "path": "/inventory",
+      "body": 375,
+      "heading": "庫存異動管理",
+      "rows": 11,
+      "width": 390,
+      "passed": true
+    },
+    {
+      "path": "/orders",
+      "body": 375,
+      "heading": "訂單與銷售",
+      "rows": 9,
+      "width": 390,
+      "passed": true
+    },
+    {
+      "path": "/ingredients",
+      "body": 375,
+      "heading": "食材管理",
+      "rows": 4,
+      "width": 390,
+      "passed": true
+    },
+    {
+      "path": "/menu-items",
+      "body": 375,
+      "heading": "餐點與配方",
+      "rows": 6,
+      "width": 390,
+      "passed": true
+    }
+  ],
+  "fatalJavascriptErrors": 0,
+  "checkedAt": "2026-11-12T12:37:08.822Z",
+  "passed": true
+}

@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-11-12T16:33:36.034Z",
+  "database": {
+    "name": "restaurant_erp_acceptance_test",
+    "port": 55434,
+    "zone": "UTC"
+  },
+  "ready": {
+    "prefix": "DEMO-20261113-48781f",
+    "stock": "1000.000",
+    "purchaseStatus": "ORDERED",
+    "received": "0.000",
+    "recipeMealPrice": "120.00",
+    "fallbackStatus": "PENDING",
+    "completedOrders": 1,
+    "revenue": "240.00",
+    "passed": true
+  },
+  "actualBrowserInstant": {
+    "apiAndDatabaseEpochEqual": true,
+    "completed": true,
+    "total": "240.00"
+  },
+  "environment": {
+    "APP_ORIGIN": "http://localhost:5175",
+    "CORS_ORIGIN": "http://localhost:5175",
+    "SESSION_COOKIE_SECURE": "false",
+    "SESSION_IDLE_MINUTES": "30",
+    "SESSION_MAX_HOURS": "8",
+    "LOGIN_RATE_LIMIT_IP": "30",
+    "LOGIN_RATE_LIMIT_ACCOUNT": "10",
+    "TRUST_PROXY_HOPS": "0",
+    "VITE_API_BASE_URL": "/api",
+    "VITE_API_PROXY_TARGET": "http://127.0.0.1:3004"
+  },
+  "session": {
+    "httpOnly": true,
+    "sameSiteLax": true,
+    "secureLoopbackOnly": true,
+    "csrfMissingRejected": true,
+    "realLoginLogout": true
+  },
+  "security": {
+    "envAndDemoPrivateIgnored": true,
+    "knownSourceSecretMatches": 0,
+    "artifactKnownSecretMatches": 0,
+    "originalMigrationsUnchanged": true,
+    "sourceSecurityPassed": true
+  },
+  "developmentDataAndAccountsUnchanged": true,
+  "windowsRebootPerformed": false,
+  "mainDevelopmentTimezoneRemediationPerformed": false,
+  "passed": true
+}

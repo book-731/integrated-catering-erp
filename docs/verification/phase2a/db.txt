@@ -1,0 +1,47 @@
+
+> nkust-team12-restaurant-erp@0.2.0 db
+> npm run db -w @erp/backend
+
+
+> @erp/backend@0.2.0 db
+> npm run db:validate && npm run db:generate && npm run db:status && npm run db:diff && tsx scripts/check-database.ts
+
+
+> @erp/backend@0.2.0 db:validate
+> prisma validate
+
+The schema at prisma\schema.prisma is valid 🚀
+
+> @erp/backend@0.2.0 db:generate
+> prisma generate
+
+
+✔ Generated Prisma Client (7.10.1) to .\src\generated\prisma in 81ms
+
+
+> @erp/backend@0.2.0 db:status
+> prisma migrate status
+
+Datasource "db": PostgreSQL database "restaurant_erp", schema "public" at "127.0.0.1:55432"
+
+2 migrations found in prisma/migrations
+
+Database schema is up to date!
+
+> @erp/backend@0.2.0 db:diff
+> prisma migrate diff --from-config-datasource --to-schema prisma/schema.prisma --exit-code
+
+No difference detected.
+
+唯讀資料庫檢查通過：2 版 Migration 的 checksum 與 4 項 CHECK 約束一致。
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Loaded Prisma config from prisma.config.ts.
+

@@ -1,0 +1,29 @@
+
+> nkust-team12-restaurant-erp@0.4.0 test:integration
+> node scripts/test-integration.mjs
+
+Datasource "db": PostgreSQL database "restaurant_erp_test", schema "public" at "127.0.0.1:55433"
+
+4 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+
+ RUN  v5.1.0 C:/Users/user/Documents/Codex/2026-11-10/12-erp-api-erp-erd-react/apps/backend
+
+
+ Test Files  4 passed (4)
+      Tests  56 passed (56)
+   Start at  15:23:51
+   Duration  15.14s (tests 66%, import 31%, transform 2%)
+
+    Isolate  4 workers spawned · ~283ms startup each (spawn + environment, per file)
+             at least ~850ms faster with isolate: false — reuses workers across files instead of one per file
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+(node:26576) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:8056) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)

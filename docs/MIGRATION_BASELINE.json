@@ -1,0 +1,21 @@
+{
+  "source": "v0.4.0 reviewed archive before final acceptance",
+  "files": [
+    {
+      "path": "apps/backend/prisma/migrations/20261110000100_initial_core/migration.sql",
+      "sha256": "8066db83458c4c7a3746414f1d3e5dc315b310968b0979e767dad80bef192092"
+    },
+    {
+      "path": "apps/backend/prisma/migrations/20261110000200_auth_sessions/migration.sql",
+      "sha256": "41a9134389aad1d6cdf93bd2b2a570a23e7eaa7c6d5ca121f410b4dea06f5324"
+    },
+    {
+      "path": "apps/backend/prisma/migrations/20261110000300_catalog_management/migration.sql",
+      "sha256": "7c80282dc2ad3199e81193e1a7f5bad058c0f5fab3505a74eddac8e8e38f1423"
+    },
+    {
+      "path": "apps/backend/prisma/migrations/20261112000100_full_operations/migration.sql",
+      "sha256": "08362a0f9769598adc50a20620d3d0217057001f005f23d249221b925fc81fee"
+    }
+  ]
+}

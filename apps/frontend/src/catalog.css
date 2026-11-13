@@ -1,0 +1,335 @@
+.catalog-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: -4px 0 24px;
+  border-bottom: 1px solid #dfe7e3;
+  padding-bottom: 10px;
+}
+.catalog-tabs a {
+  color: #687c74;
+  padding: 8px 14px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.catalog-tabs a.active {
+  background: #e7eee6;
+  color: #173f32;
+}
+.catalog-tabs a:hover {
+  background: #edf2ef;
+}
+.catalog-form fieldset,
+.recipe-content fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.catalog-form fieldset {
+  display: grid;
+  gap: 13px;
+}
+.catalog-field {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+.catalog-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4c6259;
+}
+.catalog-form .catalog-field input,
+.catalog-form .catalog-field select {
+  width: 100%;
+  min-width: 0;
+}
+.catalog-form .catalog-field label {
+  margin: 0;
+}
+.catalog-form .field-error {
+  margin: 0;
+}
+.form-two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.catalog-form input[readonly] {
+  background: #eef2ef;
+  color: #6e7d77;
+  cursor: default;
+}
+.catalog-filters {
+  flex-wrap: wrap;
+}
+.catalog-filters .unit-filter {
+  width: 120px;
+  border: 1px solid #dce3de;
+  padding: 10px 12px;
+  border-radius: 7px;
+  outline-color: #769d81;
+}
+.catalog-table td {
+  vertical-align: middle;
+}
+.catalog-table td strong {
+  font-size: 13px;
+}
+.catalog-table code,
+.recipe-table code {
+  font-size: 11px;
+  color: #6c7f75;
+}
+.decimal-value {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  white-space: nowrap;
+}
+.stock-warning {
+  display: block;
+  margin-top: 5px;
+  color: #9b752c;
+  font-size: 10px;
+}
+.catalog-readonly,
+.catalog-footnote {
+  font-size: 12px;
+  color: #6d8077;
+  margin: 12px 0 20px;
+}
+.meal-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 150px;
+}
+.meal-thumbnail {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 9px;
+  flex-shrink: 0;
+  background: #e8eeea;
+}
+.meal-thumbnail-empty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9baca3;
+}
+.recipe-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dce6de;
+  border-radius: 7px;
+  background: #f8fbf8;
+  padding: 7px 9px;
+  color: #305943;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.recipe-link small {
+  font-size: 10px;
+  padding-left: 4px;
+  color: #84958c;
+}
+.recipe-links {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.availability-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+.availability-form label {
+  font-size: 13px;
+}
+.availability-form input {
+  width: 100px;
+  padding: 9px 12px;
+  border: 1px solid #dce4dd;
+  border-radius: 7px;
+}
+.availability-result {
+  margin: 16px 0;
+  padding: 16px;
+  background: #f5f8f4;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.availability-result strong {
+  margin-left: 12px;
+}
+.availability-result p {
+  font-size: 12px;
+  color: #78877d;
+  margin: 12px 0 0;
+}
+.recipe-dialog {
+  width: min(940px, calc(100vw - 32px));
+  max-width: 940px;
+}
+.recipe-content {
+  padding: 24px;
+}
+.recipe-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e4eae6;
+}
+.recipe-summary > div {
+  flex: 1;
+  min-width: 0;
+}
+.recipe-summary strong {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.recipe-summary p {
+  margin: 6px 0 0;
+  color: #829086;
+  font-size: 11px;
+}
+.recipe-picker {
+  background: #f6f9f6;
+  border: 1px solid #e3ebe3;
+  border-radius: 9px;
+  margin: 20px 0;
+  padding: 14px;
+}
+.recipe-picker-search,
+.recipe-picker-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.recipe-picker-select {
+  margin-top: 10px;
+}
+.recipe-picker select {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #dce4dd;
+  border-radius: 7px;
+  background: white;
+  font-size: 12px;
+}
+.recipe-picker-search .search-input {
+  flex: 1;
+}
+.recipe-picker-search .button {
+  white-space: nowrap;
+}
+.recipe-picker .pagination {
+  padding: 12px 0 0;
+}
+.recipe-picker .pagination .button {
+  padding: 5px 9px;
+  font-size: 11px;
+}
+.recipe-table {
+  min-width: 680px;
+}
+.recipe-table .quantity-input {
+  width: 120px;
+  border: 1px solid #dce4dd;
+  border-radius: 6px;
+  padding: 8px 10px;
+  outline-color: #769d81;
+  font-family: ui-monospace, monospace;
+}
+.quantity-input[aria-invalid='true'] {
+  border-color: #bc5145;
+}
+.recipe-remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 0;
+  color: #997163;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.recipe-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.recipe-actions .muted {
+  font-size: 11px;
+  flex: 1;
+}
+.catalog-inline-error {
+  padding: 12px 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 700px) {
+  .catalog-tabs {
+    gap: 0;
+    margin-bottom: 18px;
+  }
+  .catalog-tabs a {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  .catalog-filters > .search-input {
+    flex-basis: 100%;
+  }
+  .catalog-filters .unit-filter {
+    flex: 1;
+    width: auto;
+    min-width: 100px;
+  }
+  .form-two-columns {
+    grid-template-columns: 1fr;
+  }
+  .recipe-content {
+    padding: 16px;
+  }
+  .recipe-picker-search,
+  .recipe-picker-select {
+    flex-wrap: wrap;
+  }
+  .recipe-picker-select select {
+    flex-basis: 100%;
+  }
+  .recipe-summary .pill {
+    font-size: 10px;
+  }
+  .recipe-actions {
+    gap: 10px;
+  }
+  .recipe-actions > .muted {
+    flex-basis: 100%;
+    order: 3;
+  }
+  .recipe-dialog {
+    max-height: 92dvh;
+  }
+  .recipe-summary p {
+    line-height: 1.7;
+  }
+  .catalog-table {
+    min-width: 760px;
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "stage": "Full ERP",
+  "version": "0.4.0",
+  "checkedAt": "2026-11-12T07:24:13.910Z",
+  "passed": true,
+  "commands": [
+    {
+      "command": "npm run check",
+      "startedAt": "2026-11-12T07:21:52.707Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/full-erp/check.txt"
+    },
+    {
+      "command": "npm run db",
+      "startedAt": "2026-11-12T07:23:01.937Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/full-erp/db.txt"
+    },
+    {
+      "command": "npm run test",
+      "startedAt": "2026-11-12T07:23:24.387Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/full-erp/test.txt"
+    },
+    {
+      "command": "npm run test:integration",
+      "startedAt": "2026-11-12T07:23:46.385Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/full-erp/test-integration.txt"
+    },
+    {
+      "command": "npm run format:check",
+      "startedAt": "2026-11-12T07:24:06.716Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/full-erp/format-check.txt"
+    },
+    {
+      "command": "docker compose --profile app --profile test config --quiet",
+      "startedAt": "2026-11-12T07:24:11.277Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/full-erp/compose.txt"
+    },
+    {
+      "command": "node work/full-erp/runtime.mjs",
+      "startedAt": "2026-11-12T07:24:11.741Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/full-erp/runtime.txt"
+    },
+    {
+      "command": "node work/acceptance-security.mjs",
+      "startedAt": "2026-11-12T07:24:12.527Z",
+      "exitCode": 0,
+      "passed": true,
+      "log": "docs/verification/full-erp/security.txt"
+    }
+  ],
+  "tests": {
+    "backend": 74,
+    "frontend": 37,
+    "databaseIntegration": 56,
+    "originalRetained": 131,
+    "total": 167
+  },
+  "scope": "Single-store Windows ERP: menu/bundles/options, ledger, orders/snapshots/deduction, purchasing/receipts, HR/scheduling, real reports"
+}

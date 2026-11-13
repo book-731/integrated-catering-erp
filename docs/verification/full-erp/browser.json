@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-12T07:07:58.230Z",
+  "stock": {
+    "stock": "105.875",
+    "ledger": "105.875"
+  },
+  "orders": [
+    {
+      "id": "ebbe70a0-220f-411b-a07c-8442072e822c",
+      "status": "COMPLETED",
+      "total": "197.50"
+    }
+  ],
+  "purchases": [
+    {
+      "id": "ce5f2b5f-1ffe-4137-a635-53fd85fa8bc8",
+      "status": "RECEIVED"
+    }
+  ],
+  "browser": "Actual UI: opening, order, payment, prepare, complete, receipt, employee, job, option; desktop and 390px mobile verified",
+  "cleaned": true
+}

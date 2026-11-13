@@ -1,0 +1,65 @@
+{
+  "startedAt": "2026-11-12T16:28:45.446Z",
+  "prefix": "DEMO-20261113-28bd7a",
+  "sessionTimeZone": "UTC",
+  "cases": [
+    {
+      "name": "UTC環境ADMIN登入並透過瀏覽器實際收貨500g",
+      "passed": true
+    },
+    {
+      "name": "瀏覽器確認白米1000.000→1500.000g",
+      "passed": true
+    },
+    {
+      "name": "CASHIER瀏覽器新增內用2份餐點，API計價240.00",
+      "passed": true
+    },
+    {
+      "name": "CASHIER瀏覽器現金付款紀錄成功",
+      "passed": true
+    },
+    {
+      "name": "KITCHEN查看200g配方快照並在瀏覽器開始製作",
+      "passed": true
+    },
+    {
+      "name": "KITCHEN唯讀食材數量1500.000→1300.000g",
+      "passed": true
+    },
+    {
+      "name": "KITCHEN瀏覽器完成已付款的240.00訂單",
+      "passed": true
+    },
+    {
+      "name": "KITCHEN直接進採購頁被拒絕403",
+      "passed": true
+    },
+    {
+      "name": "MANAGER分類銷售報表實際480.00／2單／4份",
+      "passed": true
+    },
+    {
+      "name": "明天新批次採購已訂購未收貨，保留收貨按鈕",
+      "passed": true
+    },
+    {
+      "name": "明天新批次白米1000.000g，未消耗展示主線庫存",
+      "passed": true
+    },
+    {
+      "name": "明天新批次分類報表基準240.00／1單，來自已完成備案",
+      "passed": true
+    },
+    {
+      "name": "登出成功並保留乾淨登入頁",
+      "passed": true
+    }
+  ],
+  "windowsRebootPerformed": false,
+  "finishedAt": "2026-11-12T16:31:53.620Z",
+  "readyPrefix": "DEMO-20261113-48781f",
+  "passed": true,
+  "total": 13,
+  "success": 13
+}

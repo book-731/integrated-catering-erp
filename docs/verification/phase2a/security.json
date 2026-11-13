@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-11-10T12:30:34.166Z",
+  "requiredPaths": [
+    {
+      "path": "apps/frontend",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": "apps/backend",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": "apps/backend/prisma",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": "scripts",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": "docs",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": "docker-compose.yml",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": "package.json",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": "package-lock.json",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": "README.md",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": ".gitignore",
+      "exists": true,
+      "nonempty": true
+    },
+    {
+      "path": ".env.example",
+      "exists": true,
+      "nonempty": true
+    }
+  ],
+  "node": {
+    "version": "v24.11.0",
+    "required": ">=24.11.0 <25",
+    "matches": true
+  },
+  "npm": {
+    "version": "11.6.1",
+    "required": ">=11 <12",
+    "matches": true
+  },
+  "security": {
+    "envIgnored": true,
+    "sourceFileCount": 113,
+    "currentCredentialMatchesInCommittableFiles": [],
+    "currentCredentialMatchesInFrontendBuild": [],
+    "sensitiveTrackedFiles": [],
+    "sensitiveViteVariableNames": [],
+    "commitCount": 0,
+    "stagedFileCount": 0,
+    "remotesConfigured": false
+  }
+}

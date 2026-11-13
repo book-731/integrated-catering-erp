@@ -1,0 +1,22 @@
+
+> nkust-team12-restaurant-erp@0.2.0 test:integration
+> node scripts/test-integration.mjs
+
+Datasource "db": PostgreSQL database "restaurant_erp_test", schema "public" at "127.0.0.1:55433"
+
+2 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+
+ RUN  v5.1.0 C:/Users/user/Documents/Codex/2026-11-10/12-erp-api-erp-erd-react/apps/backend
+
+
+ Test Files  2 passed (2)
+      Tests  14 passed (14)
+   Start at  20:30:26
+   Duration  3.99s (tests 56%, import 39%, transform 4%)
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
