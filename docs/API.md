@@ -14,22 +14,25 @@ GET /api/operations/menu/:id/configuration不存在資源現在回404 NOT_FOUND�
 
 規格新增於 modules/catalog/catalog.openapi.ts，與原登入 API 共用 Session、CSRF、JSON envelope 及錯誤 middleware。任何寫入須 HttpOnly Cookie、允許的 Origin、X-CSRF-Token 與 application/json；交易內會再次核對操作者。
 
-| 方法  | 路徑                                           | 權限                    | 用途                                               |
-| ----- | ---------------------------------------------- | ----------------------- | -------------------------------------------------- |
-| GET   | /api/ingredients、/api/ingredients/:id         | ADMIN／MANAGER／KITCHEN | 食材清單／單筆，含唯讀現有／安全庫存及提醒         |
-| POST  | /api/ingredients                               | ADMIN／MANAGER          | 新增，庫存固定 0，成功 201                         |
-| PATCH | /api/ingredients/:id                           | ADMIN／MANAGER          | 修改基礎資料／停用／啟用，不接受庫存寫入           |
-| GET   | /api/menu-categories、/api/menu-categories/:id | 四種登入角色            | 分類清單／單筆，含所屬餐點數                       |
-| POST  | /api/menu-categories                           | ADMIN／MANAGER          | 新增分類，成功 201                                 |
-| PATCH | /api/menu-categories/:id                       | ADMIN／MANAGER          | 改名／停用／啟用，保留餐點                         |
-| GET   | /api/menu-items、/api/menu-items/:id           | 四種登入角色            | 餐點清單／單筆，含分類與配方項數                   |
-| POST  | /api/menu-items                                | ADMIN／MANAGER          | 新增一般餐點，成功 201                             |
-| PATCH | /api/menu-items/:id                            | ADMIN／MANAGER          | 修改／停用／啟用與供應設定                         |
-| GET   | /api/menu-items/:id/recipe                     | ADMIN／MANAGER／KITCHEN | 完整配方、停用狀態與版本；不回傳食材庫存或安全庫存 |
-| PUT   | /api/menu-items/:id/recipe                     | ADMIN／MANAGER          | 原子替換完整配方，新增／改用量／移除列             |
-| GET   | /api/menu-items/:id/ingredient-availability    | ADMIN／MANAGER／KITCHEN | 唯讀查詢指定份數是否足夠，不保留或扣庫             |
+| 方法   | 路徑                                           | 權限                    | 用途                                               |
+| ------ | ---------------------------------------------- | ----------------------- | -------------------------------------------------- |
+| GET    | /api/ingredients、/api/ingredients/:id         | ADMIN／MANAGER／KITCHEN | 食材清單／單筆，含唯讀現有／安全庫存及提醒         |
+| POST   | /api/ingredients                               | ADMIN／MANAGER          | 新增，庫存固定 0，成功 201                         |
+| PATCH  | /api/ingredients/:id                           | ADMIN／MANAGER          | 修改基礎資料／停用／啟用，不接受庫存寫入           |
+| GET    | /api/menu-categories、/api/menu-categories/:id | 四種登入角色            | 分類清單／單筆，含所屬餐點數                       |
+| POST   | /api/menu-categories                           | ADMIN／MANAGER          | 新增分類，成功 201                                 |
+| PATCH  | /api/menu-categories/:id                       | ADMIN／MANAGER          | 改名／停用／啟用，保留餐點                         |
+| GET    | /api/menu-items、/api/menu-items/:id           | 四種登入角色            | 餐點清單／單筆，含分類與配方項數                   |
+| POST   | /api/menu-items                                | ADMIN／MANAGER          | 新增一般餐點，成功 201                             |
+| PATCH  | /api/menu-items/:id                            | ADMIN／MANAGER          | 修改／停用／啟用與供應設定                         |
+| GET    | /api/menu-items/:id/recipe                     | ADMIN／MANAGER／KITCHEN | 完整配方、停用狀態與版本；不回傳食材庫存或安全庫存 |
+| PUT    | /api/menu-items/:id/recipe                     | ADMIN／MANAGER          | 原子替換完整配方，新增／改用量／移除列             |
+| GET    | /api/menu-items/:id/ingredient-availability    | ADMIN／MANAGER／KITCHEN | 唯讀查詢指定份數是否足夠，不保留或扣庫             |
+| POST   | /api/menu-items/:id/image                      | ADMIN／MANAGER          | 上傳餐點照片二進位檔案（JPG/PNG/WebP，<=2MB）      |
+| DELETE | /api/menu-items/:id/image                      | ADMIN／MANAGER          | 刪除餐點照片，將 imageUrl 設為 null 並清理硬碟檔案 |
+| GET    | /api/menu-items/images/:filename               | 四種登入角色            | 讀取餐點照片二進位檔案，具 inline 與 private 快取  |
 
-本階段沒有 DELETE 端點。停用以 PATCH isActive=false，任何歷史關聯不自動刪除。沒有訂單或庫存調整／扣除 API。
+本階段食材、分類與餐點無實體資料刪除端點（以 PATCH isActive=false 停用）；唯餐點照片支援 DELETE /api/menu-items/:id/image 清理實體檔案。沒有訂單或庫存調整／扣除 API。
 
 ### 清單 query 與回應
 
@@ -66,7 +69,7 @@ data 為 `{ items, total, page, pageSize }`。單筆／新增／修改分別包 
 }
 ```
 
-price 必須非負十進位字串，最多 10 位整數／2 位小數；imageUrl 為 null 或無帳密 HTTP(S) 絕對 URL、最長 2048，後端不抓取。回應額外含 category 摘要、recipeCount、recipeVersion 與時間。
+price 必須非負十進位字串，最多 10 位整數／2 位小數；imageUrl 為 null、無帳密 HTTP(S) 絕對 URL 或本機圖片路徑（`/api/menu-items/images/<uuid>.<ext>`），最長 2048。本機圖片可透過 `POST /api/menu-items/:id/image` 上傳（支援 image/jpeg、image/png、image/webp，上限 2 MB），後端會檢驗魔術位元組並儲存於本機伺服器；透過 `DELETE /api/menu-items/:id/image` 可移除圖片並自動刪除實體檔案；亦可由四種登入角色透過 `GET /api/menu-items/images/:filename` 串流讀取。若透過 `PATCH /api/menu-items/:id` 將 imageUrl 修改為 external URL 或 null，後端亦會自動清理舊本機圖檔。回應額外含 category 摘要、recipeCount、recipeVersion 與時間。
 
 新建餐點／變更分類／重新啟用餐點須啟用分類，否則 409 CATEGORY_INACTIVE。既有分類停用不刪除餐點，普通欄位修改可保留原分類。isAvailable 是供應設定，未實作下單可售與庫存驗證。
 

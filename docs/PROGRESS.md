@@ -1,3 +1,12 @@
+## 餐點照片後端本機上傳與讀取 API（2026-11-17，Asia/Taipei）
+
+依餐點照片上傳與存檔設計規格及實作計畫，完成後端本機圖片儲存與 API 端點：
+
+- 模組架構：新增 `MenuImageStorage` 處理魔術位元組安全驗證（JPG、PNG、WebP）、UUID 檔名生成、路徑穿越防護及目錄管理。支援獨立目錄注入，預設使用 `work/uploads/menu-items/`。
+- CSRF 防護通用化：重構 `protectCsrfFor`，支援非 JSON 的二進位 Content-Type 檢驗（`image/jpeg`、`image/png`、`image/webp`），同時維持既有 `application/json` 嚴格防護。
+- API 端點與生命週期：實作 `POST /api/menu-items/:id/image`（二進位上傳、2MB 限制、新圖自動取代舊圖）、`DELETE /api/menu-items/:id/image`（刪除本機圖檔並設 `imageUrl` 為 null）、`GET /api/menu-items/images/:filename`（四角色登入讀取、inline 與 private 快取 Header）、以及 `PATCH /api/menu-items/:id` 變更圖片時自動清理舊圖機制。
+- OpenAPI 與真實 PostgreSQL 整合測試：更新 `catalog.openapi.ts`（移除 `imageUrl` 的 `format: 'uri'` 限制、補齊三端點與錯誤碼宣告）；新增 `catalog-image.integration.test.ts` 完整覆蓋四角色權限、魔術位元組防偽、2MB 上限、路徑穿越與生命週期，全數通過且未污染 `work/uploads`。
+
 ## GitHub首次上傳準備（2026-11-13，Asia/Taipei）
 
 依使用者新指示，解除「不自行Push」對這次上傳的限制。目標為book-731/integrated-catering-erp（原Nkust-IM-SE-group12網址已轉址），使用者選定andy1215666，協作者寫入權限與本機CLI登入已確認；遠端目前為空倉庫。本次以codex/erp-v0.4.0-initial-upload作為初始分支，保留v0.4.0及既有Demo資料，不新增業務功能。
