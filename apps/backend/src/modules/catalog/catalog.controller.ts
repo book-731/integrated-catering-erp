@@ -1,5 +1,6 @@
 import type { Request, RequestHandler } from 'express';
 import { z } from 'zod';
+import { ApiError } from '../../common/api-error.js';
 import { sendSuccess } from '../../common/http.js';
 import { currentActor } from '../auth/auth.middleware.js';
 import {
@@ -91,6 +92,31 @@ export function catalogController(service = new CatalogService()) {
         catalogValidate(menuUpdateSchema, request.body),
       ),
     });
+  const uploadMenuImage: RequestHandler = async (request, response) => {
+    if (!Buffer.isBuffer(request.body)) {
+      throw new ApiError(415, 'UNSUPPORTED_MEDIA_TYPE', '僅支援 JPG、PNG 或 WebP 圖片檔案。');
+    }
+    const menuItem = await service.uploadMenuImage(
+      currentActor(request),
+      id(request),
+      request.get('Content-Type'),
+      request.body,
+    );
+    sendSuccess(request, response, { menuItem });
+  };
+  const deleteMenuImage: RequestHandler = async (request, response) => {
+    const menuItem = await service.deleteMenuImage(currentActor(request), id(request));
+    sendSuccess(request, response, { menuItem });
+  };
+  const menuImage: RequestHandler = async (request, response) => {
+    const filename = typeof request.params.filename === 'string' ? request.params.filename : '';
+    const { buffer, mimeType } = await service.readMenuImage(filename);
+    response.setHeader('Content-Type', mimeType);
+    response.setHeader('Content-Disposition', 'inline');
+    response.setHeader('X-Content-Type-Options', 'nosniff');
+    response.setHeader('Cache-Control', 'private, max-age=31536000, immutable');
+    response.send(buffer);
+  };
   const recipe: RequestHandler = async (request, response) =>
     sendSuccess(request, response, { recipe: await service.recipe(id(request)) });
   const replaceRecipe: RequestHandler = async (request, response) =>
@@ -121,6 +147,9 @@ export function catalogController(service = new CatalogService()) {
     menuItem,
     createMenu,
     updateMenu,
+    uploadMenuImage,
+    deleteMenuImage,
+    menuImage,
     recipe,
     availability,
     replaceRecipe,

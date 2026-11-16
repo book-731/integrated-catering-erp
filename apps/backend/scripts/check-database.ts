@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readdir, readFile } from 'node:fs/promises';
 import { prisma } from '../src/lib/prisma.js';
+import { assertUtcSession } from '../src/lib/session-timezone.js';
 import { assertCatalogIntegrity, type FunctionalIndex } from '../src/lib/catalog-integrity.js';
 import {
   assertCheckConstraints,
@@ -27,6 +28,8 @@ try {
   );
   await prisma.$transaction(async (transaction) => {
     await transaction.$executeRaw`SET TRANSACTION READ ONLY`;
+    const [{ TimeZone }] = await transaction.$queryRaw<[{ TimeZone: string }]>`SHOW TimeZone`;
+    assertUtcSession(TimeZone);
     const migrations = await transaction.$queryRaw<AppliedMigration[]>`
       SELECT migration_name, checksum, finished_at, rolled_back_at
       FROM public._prisma_migrations ORDER BY started_at`;
@@ -64,7 +67,7 @@ try {
     assertCatalogIntegrity(constraints, indexes);
   });
   console.log(
-    `唯讀資料庫檢查通過：${local.length} 版 Migration checksum、19 項 CHECK 及 3 個去重索引一致。`,
+    `唯讀資料庫檢查通過：${local.length} 版 Migration checksum、19 項 CHECK 及 3 個去重索引一致，連線時區 UTC。`,
   );
 } catch (error) {
   const known = error instanceof Error && /^(本機|資料庫|Migration)/.test(error.message);

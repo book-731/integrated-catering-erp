@@ -1,6 +1,7 @@
 import type { Actor } from '../auth/auth.types.js';
 import type { Ingredient } from '../../generated/prisma/client.js';
 import { catalogRepository, type CatalogRepository } from './catalog.repository.js';
+import { MenuImageStorage } from './menu-image-storage.js';
 import type {
   CatalogQuery,
   IngredientQuery,
@@ -62,7 +63,10 @@ export function recipeDto(item: RecipeRecord) {
   };
 }
 export class CatalogService {
-  constructor(private readonly repository = catalogRepository) {}
+  constructor(
+    private readonly repository = catalogRepository,
+    private readonly imageStorage = new MenuImageStorage(),
+  ) {}
   async ingredients(query: IngredientQuery) {
     const result = await this.repository.listIngredients(query);
     return { ...result, items: result.items.map(ingredientDto) };
@@ -100,7 +104,48 @@ export class CatalogService {
     return menuDto(await this.repository.createMenu(actor, input));
   }
   async updateMenu(actor: Actor, id: string, input: MenuUpdate) {
-    return menuDto(await this.repository.updateMenu(actor, id, input));
+    const raw = await this.repository.updateMenu(actor, id, input);
+    const isWrapped = typeof raw === 'object' && raw !== null && 'item' in raw;
+    const item = isWrapped
+      ? (raw as { item: MenuRecord; previousImageUrl: string | null }).item
+      : (raw as MenuRecord);
+    const previousImageUrl = isWrapped
+      ? (raw as { item: MenuRecord; previousImageUrl: string | null }).previousImageUrl
+      : null;
+
+    if (input.imageUrl !== undefined && previousImageUrl !== item.imageUrl) {
+      await this.imageStorage.deleteByImageUrlQuietly(previousImageUrl);
+    }
+    return menuDto(item);
+  }
+  async uploadMenuImage(actor: Actor, id: string, contentType: string | undefined, buffer: Buffer) {
+    await this.repository.menuItem(id);
+    const saved = await this.imageStorage.save(contentType, buffer);
+    let result: { item: MenuRecord; previousImageUrl: string | null };
+    try {
+      result = await this.repository.setMenuImage(actor, id, saved.imageUrl);
+    } catch (error) {
+      try {
+        await this.imageStorage.deleteFilename(saved.filename);
+      } catch {
+        // 磁碟清理失敗不應遮蔽原始資料庫錯誤
+      }
+      throw error;
+    }
+    if (result.previousImageUrl && result.previousImageUrl !== result.item.imageUrl) {
+      await this.imageStorage.deleteByImageUrlQuietly(result.previousImageUrl);
+    }
+    return menuDto(result.item);
+  }
+  async deleteMenuImage(actor: Actor, id: string) {
+    const result = await this.repository.setMenuImage(actor, id, null);
+    if (result.previousImageUrl) {
+      await this.imageStorage.deleteByImageUrlQuietly(result.previousImageUrl);
+    }
+    return menuDto(result.item);
+  }
+  async readMenuImage(filename: string) {
+    return this.imageStorage.read(filename);
   }
   async recipe(id: string) {
     return recipeDto(await this.repository.recipe(id));

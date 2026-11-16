@@ -69,10 +69,10 @@ const menuFields = {
   price: decimal(2, 10),
   imageUrl: {
     type: 'string',
-    format: 'uri',
     nullable: true,
     maxLength: 2048,
-    description: 'HTTP(S) URL，不可含帳密；伺服器不抓取圖片',
+    description:
+      '餐點圖片路徑或 HTTP(S) URL（站內相對路徑 /api/menu-items/images/... 或外部 URL，不可含帳密）',
   },
   isActive: { type: 'boolean', default: true },
   isAvailable: { type: 'boolean', default: true },
@@ -452,6 +452,102 @@ export const catalogPaths = {
           }),
         ),
         ...errors,
+      },
+    },
+  },
+  '/menu-items/{id}/image': {
+    post: {
+      tags: ['Menu'],
+      summary: 'ADMIN／MANAGER：上傳餐點照片二進位檔案',
+      description:
+        '接收 image/jpeg、image/png 或 image/webp 二進位檔案（最大 2 MB），驗證魔術位元組後存於本機伺服器並更新 menuItem.imageUrl。若原已有本機照片則自動替換並刪除舊檔。',
+      security,
+      parameters: [idParameter, ...writeHeaders],
+      requestBody: {
+        required: true,
+        description: '圖片二進位內容，限制 2 MB 以內',
+        content: {
+          'image/jpeg': { schema: { type: 'string', format: 'binary' } },
+          'image/png': { schema: { type: 'string', format: 'binary' } },
+          'image/webp': { schema: { type: 'string', format: 'binary' } },
+        },
+      },
+      responses: {
+        ...errors,
+        '200': response(
+          '已成功上傳餐點圖片並更新餐點資料',
+          envelope({ type: 'object', properties: { menuItem: ref('MenuItem') } }),
+        ),
+        '413': response('PAYLOAD_TOO_LARGE；圖片檔案超過 2 MB 限制', ref('ApiError')),
+        '415': response(
+          'UNSUPPORTED_MEDIA_TYPE；僅支援 image/jpeg、image/png 或 image/webp',
+          ref('ApiError'),
+        ),
+        '422': response(
+          'INVALID_IMAGE_FILE；非合法之 JPG、PNG、WebP 圖片檔案內容',
+          ref('ApiError'),
+        ),
+      },
+    },
+    delete: {
+      tags: ['Menu'],
+      summary: 'ADMIN／MANAGER：刪除餐點照片',
+      description: '將 menuItem.imageUrl 設為 null，若原先為本機照片則刪除磁碟檔案。',
+      security,
+      parameters: [idParameter, ...writeHeaders],
+      responses: {
+        '200': response(
+          '已成功刪除餐點圖片並更新餐點資料',
+          envelope({ type: 'object', properties: { menuItem: ref('MenuItem') } }),
+        ),
+        ...errors,
+      },
+    },
+  },
+  '/menu-items/images/{filename}': {
+    get: {
+      tags: ['Menu'],
+      summary: '四種登入角色：讀取餐點照片檔案',
+      description:
+        '提供已驗證身分的使用者檢視餐點照片。回傳原始圖片二進位串流，包含 Content-Disposition: inline、X-Content-Type-Options: nosniff 與 private 快取控制。',
+      security,
+      parameters: [
+        {
+          in: 'path',
+          name: 'filename',
+          required: true,
+          schema: {
+            type: 'string',
+            pattern:
+              '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\.(jpg|png|webp)$',
+          },
+          description: '餐點照片檔案名稱（UUID.ext）',
+        },
+      ],
+      responses: {
+        '200': {
+          description: '圖片二進位資料串流',
+          headers: {
+            'Content-Type': {
+              schema: { type: 'string' },
+              description: 'image/jpeg、image/png 或 image/webp',
+            },
+            'Content-Disposition': { schema: { type: 'string', example: 'inline' } },
+            'X-Content-Type-Options': { schema: { type: 'string', example: 'nosniff' } },
+            'Cache-Control': {
+              schema: { type: 'string', example: 'private, max-age=31536000, immutable' },
+            },
+          },
+          content: {
+            'image/*': {
+              schema: { type: 'string', format: 'binary' },
+            },
+          },
+        },
+        '401': errors['401'],
+        '403': errors['403'],
+        '404': errors['404'],
+        '500': errors['500'],
       },
     },
   },

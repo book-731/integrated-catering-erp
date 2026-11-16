@@ -1,6 +1,7 @@
 import { timingSafeEqual } from 'node:crypto';
 import type { Request, RequestHandler, Response } from 'express';
 import { ApiError } from '../../common/api-error.js';
+import { normalizeMediaType } from '../../common/http.js';
 import { env, trustedOrigins } from '../../config/env.js';
 import type { AuthService } from './auth.service.js';
 import type { Actor, Role } from './auth.types.js';
@@ -54,28 +55,38 @@ export function requireRoles(...roles: Role[]): RequestHandler {
     next();
   };
 }
-export const protectCsrf: RequestHandler = (request, _response, next) => {
-  const origin = request.get('Origin');
-  const expected = request.authContext?.session.csrfToken;
-  const supplied = request.get('X-CSRF-Token');
-  if (
-    !origin ||
-    !trustedOrigins.has(origin) ||
-    !expected ||
-    !supplied ||
-    supplied.length > 128 ||
-    Buffer.byteLength(expected) !== Buffer.byteLength(supplied) ||
-    !timingSafeEqual(Buffer.from(expected), Buffer.from(supplied))
-  ) {
-    next(new ApiError(403, 'CSRF_INVALID', '安全驗證失敗，請重新整理登入狀態後再試。'));
-    return;
-  }
-  if (request.get('Content-Type')?.split(';')[0]?.trim() !== 'application/json') {
-    next(new ApiError(415, 'UNSUPPORTED_MEDIA_TYPE', '此操作需要 application/json。'));
-    return;
-  }
-  next();
-};
+export function protectCsrfFor(allowedMediaTypes?: readonly string[]): RequestHandler {
+  return (request, _response, next) => {
+    const origin = request.get('Origin');
+    const expected = request.authContext?.session.csrfToken;
+    const supplied = request.get('X-CSRF-Token');
+    if (
+      !origin ||
+      !trustedOrigins.has(origin) ||
+      !expected ||
+      !supplied ||
+      supplied.length > 128 ||
+      Buffer.byteLength(expected) !== Buffer.byteLength(supplied) ||
+      !timingSafeEqual(Buffer.from(expected), Buffer.from(supplied))
+    ) {
+      next(new ApiError(403, 'CSRF_INVALID', '安全驗證失敗，請重新整理登入狀態後再試。'));
+      return;
+    }
+    if (allowedMediaTypes && allowedMediaTypes.length > 0) {
+      const normalized = normalizeMediaType(request.get('Content-Type'));
+      if (!normalized || !allowedMediaTypes.includes(normalized)) {
+        const message =
+          allowedMediaTypes.length === 1 && allowedMediaTypes[0] === 'application/json'
+            ? '此操作需要 application/json。'
+            : `此操作僅支援 ${allowedMediaTypes.join('、')}。`;
+        next(new ApiError(415, 'UNSUPPORTED_MEDIA_TYPE', message));
+        return;
+      }
+    }
+    next();
+  };
+}
+export const protectCsrf: RequestHandler = protectCsrfFor(['application/json']);
 export function currentActor(request: Request): Actor {
   const user = request.authContext?.user;
   if (!user) throw new ApiError(401, 'UNAUTHENTICATED', '請先登入系統。');
