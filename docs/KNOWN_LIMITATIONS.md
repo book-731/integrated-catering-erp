@@ -1,6 +1,6 @@
 # 已知限制、範圍與未完成事項
 
-**2026-11-13補驗新增重大限制：** 本機adapter-pg在非UTC連線下存在timestamptz錯存／錯讀，午夜後比對真正資料庫時間才揭露。專用Demo已以連線啟動參數固定UTC，重新stage新批次，並加強真實時間／午夜報表驗證；不回填舊資料、不修改主.env。原開發環境與歷史時間需另行盤點／備份／核准修復，不能假設先前「畫面與API一致」就足以證明時間正確。明天只使用localhost:5175的UTC Demo，詳見TOMORROW_DEMO。這項新發現優先於舊版全面通過敘述。
+已在 `apps/backend/src/lib/prisma.ts` 的連線層強制 `TimeZone=UTC`（`withUtcSession`），`npm run db` 會檢查，`session-timezone.integration.test.ts` 鎖住跨午夜行為；Demo 的連線參數繞法保留作為雙重保險；2026-11-16 主開發資料庫已清空重建，舊錯存資料不再存在。
 
 本輪通過的是Windows單機、單店、課程定義範圍的ERP。功能通過不代表下列項目已完成。
 
