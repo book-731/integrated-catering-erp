@@ -19,6 +19,7 @@ const schema = z.object({
   SESSION_MAX_HOURS: z.coerce.number().int().min(1).max(24).default(8),
   LOGIN_RATE_LIMIT_IP: z.coerce.number().int().min(1).max(1000).default(30),
   LOGIN_RATE_LIMIT_ACCOUNT: z.coerce.number().int().min(1).max(1000).default(10),
+  UPLOAD_DIR: z.string().trim().min(1).optional(),
 });
 
 const parsed = schema.safeParse(process.env);
