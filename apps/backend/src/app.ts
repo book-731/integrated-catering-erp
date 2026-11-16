@@ -14,10 +14,15 @@ import type { AuthRepository } from './modules/auth/auth.repository.interface.js
 import { authRoutes } from './modules/auth/auth.routes.js';
 import { usersRoutes } from './modules/users/users.routes.js';
 import { catalogRoutes } from './modules/catalog/catalog.routes.js';
+import { MenuImageStorage } from './modules/catalog/menu-image-storage.js';
 import { operationsRoutes } from './modules/operations/routes.js';
 
 export function createApp(
-  dependencies: { healthRepository?: HealthRepository; authRepository?: AuthRepository } = {},
+  dependencies: {
+    healthRepository?: HealthRepository;
+    authRepository?: AuthRepository;
+    menuImageStorage?: MenuImageStorage;
+  } = {},
 ) {
   const app = express();
   app.disable('x-powered-by');
@@ -46,7 +51,7 @@ export function createApp(
   const securityRepository = dependencies.authRepository ?? authRepository;
   app.use('/api/auth', authRoutes(securityRepository));
   app.use('/api/users', usersRoutes(securityRepository));
-  app.use('/api', catalogRoutes(securityRepository));
+  app.use('/api', catalogRoutes(securityRepository, dependencies.menuImageStorage));
   app.use('/api/operations', operationsRoutes(securityRepository));
   app.get('/api/openapi.json', (request, response) => {
     response.json(openApiDocument);

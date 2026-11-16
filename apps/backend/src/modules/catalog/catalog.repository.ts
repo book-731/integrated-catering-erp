@@ -22,6 +22,7 @@ const pagination = (query: CatalogQuery) => ({
 });
 const categoryInclude = { _count: { select: { menuItems: true } } } as const;
 const menuInclude = { category: true, _count: { select: { recipes: true } } } as const;
+export type MenuRecord = Prisma.MenuItemGetPayload<{ include: typeof menuInclude }>;
 export class CatalogRepository {
   private async write<T>(
     actor: Actor,
@@ -210,7 +211,11 @@ export class CatalogRepository {
       });
     });
   }
-  updateMenu(actor: Actor, id: string, input: MenuUpdate) {
+  updateMenu(
+    actor: Actor,
+    id: string,
+    input: MenuUpdate,
+  ): Promise<{ item: MenuRecord; previousImageUrl: string | null }> {
     return this.write(actor, async (tx) => {
       const current = await tx.menuItem.findUnique({ where: { id } });
       if (!current) throw missing('餐點');
@@ -231,7 +236,24 @@ export class CatalogRepository {
       if (input.price !== undefined) data.price = new Prisma.Decimal(input.price);
       if (input.isActive !== undefined) data.isActive = input.isActive;
       if (input.isAvailable !== undefined) data.isAvailable = input.isAvailable;
-      return tx.menuItem.update({ where: { id }, data, include: menuInclude });
+      const item = await tx.menuItem.update({ where: { id }, data, include: menuInclude });
+      return { item, previousImageUrl: current.imageUrl };
+    });
+  }
+  setMenuImage(
+    actor: Actor,
+    id: string,
+    imageUrl: string | null,
+  ): Promise<{ item: MenuRecord; previousImageUrl: string | null }> {
+    return this.write(actor, async (tx) => {
+      const current = await tx.menuItem.findUnique({ where: { id } });
+      if (!current) throw missing('餐點');
+      const item = await tx.menuItem.update({
+        where: { id },
+        data: { imageUrl },
+        include: menuInclude,
+      });
+      return { item, previousImageUrl: current.imageUrl };
     });
   }
   async recipe(id: string) {
