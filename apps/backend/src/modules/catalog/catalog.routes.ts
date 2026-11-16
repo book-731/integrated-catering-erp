@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import { env } from '../../config/env.js';
 import type { AuthRepository } from '../auth/auth.repository.interface.js';
 import { AuthService } from '../auth/auth.service.js';
 import {
@@ -26,7 +27,7 @@ export function catalogRoutes(repository: AuthRepository, imageStorage?: MenuIma
     categories = Router(),
     menu = Router(),
     controller = catalogController(
-      new CatalogService(catalogRepository, imageStorage ?? new MenuImageStorage()),
+      new CatalogService(catalogRepository, imageStorage ?? new MenuImageStorage(env.UPLOAD_DIR)),
     );
   const session = loadSession(new AuthService(repository));
   ingredients.use(session, requireAuthenticated, requireRoles(...ingredientReadRoles));

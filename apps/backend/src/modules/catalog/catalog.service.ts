@@ -125,10 +125,14 @@ export class CatalogService {
     try {
       result = await this.repository.setMenuImage(actor, id, saved.imageUrl);
     } catch (error) {
-      await this.imageStorage.deleteFilename(saved.filename);
+      try {
+        await this.imageStorage.deleteFilename(saved.filename);
+      } catch {
+        // 磁碟清理失敗不應遮蔽原始資料庫錯誤
+      }
       throw error;
     }
-    if (result.previousImageUrl !== result.item.imageUrl) {
+    if (result.previousImageUrl && result.previousImageUrl !== result.item.imageUrl) {
       await this.imageStorage.deleteByImageUrlQuietly(result.previousImageUrl);
     }
     return menuDto(result.item);

@@ -1,10 +1,10 @@
 import { timingSafeEqual } from 'node:crypto';
 import type { Request, RequestHandler, Response } from 'express';
 import { ApiError } from '../../common/api-error.js';
+import { normalizeMediaType } from '../../common/http.js';
 import { env, trustedOrigins } from '../../config/env.js';
 import type { AuthService } from './auth.service.js';
 import type { Actor, Role } from './auth.types.js';
-import { normalizeMediaType } from '../catalog/menu-image-storage.js';
 export const sessionCookieName = env.SESSION_COOKIE_SECURE ? '__Host-erp.sid' : 'erp.sid';
 const cookieOptions = {
   httpOnly: true,

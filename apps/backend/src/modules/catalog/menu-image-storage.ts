@@ -3,6 +3,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ApiError } from '../../common/api-error.js';
+import { normalizeMediaType } from '../../common/http.js';
+
+export { normalizeMediaType };
 
 export const MENU_IMAGE_MAX_BYTES = 2 * 1024 * 1024;
 export const MENU_IMAGE_URL_PREFIX = '/api/menu-items/images/';
@@ -29,14 +32,6 @@ const EXT_TO_MIME: Record<'jpg' | 'png' | 'webp', AllowedImageMimeType> = {
 
 function isNodeError(err: unknown): err is NodeJS.ErrnoException {
   return typeof err === 'object' && err !== null && 'code' in err;
-}
-
-export function normalizeMediaType(contentType: string | undefined): string | undefined {
-  if (!contentType) {
-    return undefined;
-  }
-  const rawType = contentType.split(';')[0]?.trim().toLowerCase();
-  return rawType || undefined;
 }
 
 function detectBufferImageFormat(buffer: Buffer): DetectedMenuImage | null {
@@ -112,6 +107,12 @@ export function defaultUploadRoot(): string {
 export class MenuImageStorage {
   private readonly menuDir: string;
 
+  /**
+   * Constructs a MenuImageStorage instance.
+   * `process.env.UPLOAD_DIR` is retained as a fallback here so unit tests can instantiate
+   * MenuImageStorage in isolation without importing `env.ts` (which validates `DATABASE_URL`),
+   * while application entrypoints pass validated `env.UPLOAD_DIR`.
+   */
   constructor(uploadRoot: string = process.env.UPLOAD_DIR?.trim() || defaultUploadRoot()) {
     this.menuDir = path.resolve(uploadRoot, 'menu-items');
   }

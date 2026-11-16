@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import express, { type NextFunction, type Request, type Response } from 'express';
 import request from 'supertest';
-import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ApiError } from '../src/common/api-error.js';
 import { env } from '../src/config/env.js';
 import { Prisma } from '../src/generated/prisma/client.js';
@@ -162,7 +162,7 @@ describe('CatalogService 圖片生命週期與交易回滾', () => {
     imageStorage = new MenuImageStorage(tmpUploadRoot);
   });
 
-  afterAll(() => {
+  afterEach(() => {
     if (tmpUploadRoot && fs.existsSync(tmpUploadRoot)) {
       fs.rmSync(tmpUploadRoot, { recursive: true, force: true });
     }
@@ -218,6 +218,32 @@ describe('CatalogService 圖片生命週期與交易回滾', () => {
     ).rejects.toThrow('Database transaction failed unexpectedly');
 
     expect(countFilesInMenuDir()).toBe(0);
+  });
+
+  it('uploadMenuImage: 資料庫寫入失敗且磁碟清理亦拋錯時，原始資料庫錯誤不被遮蔽', async () => {
+    const targetItem = createFakeMenuItem('33333333-3333-4333-8333-333333333333');
+    const fakeRepo = {
+      menuItem: vi.fn(async () => targetItem),
+      setMenuImage: vi.fn(async () => {
+        throw new Error('Database transaction failed unexpectedly');
+      }),
+    } as unknown as CatalogRepository;
+
+    const mockStorage = new MenuImageStorage(tmpUploadRoot);
+    vi.spyOn(mockStorage, 'deleteFilename').mockRejectedValueOnce(
+      new Error('Disk cleanup failure'),
+    );
+
+    const service = new CatalogService(fakeRepo, mockStorage);
+
+    await expect(
+      service.uploadMenuImage(
+        adminActor,
+        '33333333-3333-4333-8333-333333333333',
+        'image/png',
+        PNG_FIXTURE,
+      ),
+    ).rejects.toThrow('Database transaction failed unexpectedly');
   });
 
   it('uploadMenuImage: 替換原本有本機圖片的餐點時，舊圖檔會被刪除、新圖檔保留', async () => {
